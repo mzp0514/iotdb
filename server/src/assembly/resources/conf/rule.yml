@@ -1,0 +1,36 @@
+rules:
+  - name: TemperatureRule
+    type: threshold
+    time_series: root.ln.*.*.temperature
+    aggregation_function: avg
+    window_period: 100s
+    schedule_every: 1s
+    alerts:
+      - symbol: ">="
+        value: 100.0
+        for: 1s
+        labels:
+          severity: critical
+        annotations:
+          summary: High temperature
+          description: ${timeseries}_avg100s is ${value}
+      - symbol: ">="
+        value: 80.0
+        for: 1s
+        labels:
+          severity: warning
+        annotations:
+          summary: High temperature
+          description: ${timeseries}_avg100s is ${value}
+
+  - name: TemperatureSensorStatusRule
+    type: deadman
+    time_series: root.ln.*.*.temperature
+    schedule_every: 20s
+    stop_checking_after: 2h
+    alerts:
+      - for: 100s
+        severity: critical
+        annotations:
+          summary: Sensor Down
+          description: root.ln.wf01.wt01.temperature sensor down

@@ -18,6 +18,8 @@
  */
 package org.apache.iotdb.db.service;
 
+import org.apache.iotdb.db.alert.notifier.NotifierManager;
+import org.apache.iotdb.db.alert.rule.RuleManager;
 import org.apache.iotdb.db.concurrent.IoTDBDefaultThreadExceptionHandler;
 import org.apache.iotdb.db.conf.IoTDBConfigCheck;
 import org.apache.iotdb.db.conf.IoTDBConstant;
@@ -142,6 +144,9 @@ public class IoTDB implements IoTDBMBean {
     registerManager.register(StatMonitor.getInstance());
     registerManager.register(SyncServerManager.getInstance());
     registerManager.register(UpgradeSevice.getINSTANCE());
+
+    registerManager.register(NotifierManager.getInstance());
+    registerManager.register(RuleManager.getInstance());
 
     logger.info("Congratulation, IoTDB is set up successfully. Now, enjoy yourself!");
   }

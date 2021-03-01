@@ -40,6 +40,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
+import java.time.Period;
+import java.time.temporal.TemporalAmount;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -119,6 +122,14 @@ public class CommonUtils {
       }
     } catch (NumberFormatException e) {
       throw new QueryProcessException(e.getMessage());
+    }
+  }
+
+  public static TemporalAmount parseTimeDuration(String value) {
+    if (Character.isUpperCase(value.charAt(value.length() - 1))) {
+      return Period.parse("P" + value);
+    } else {
+      return Duration.parse("PT" + value);
     }
   }
 

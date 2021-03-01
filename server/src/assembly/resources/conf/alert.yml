@@ -1,0 +1,26 @@
+
+rule_path: 'rule.json'
+
+log:
+  path: ''
+  max_size: 100M # logback, slf4j
+
+notifiers:
+  - name: 'alert_manager_test'
+    type: 'alertmanager'
+    endpoint: 'http://127.0.0.1:9093/api/v1/alerts'
+
+  - name: 'email_test'
+    type: 'email'
+    send_interval: 1m
+    smtp_host: 'smtp.qq.com'
+    smtp_port: 465
+    smtp_from: '1076470037@qq.com'
+    smtp_auth_username: '1076470037@qq.com'
+    smtp_auth_password:
+    receivers:
+      - 'maozhipeng0514@163.com'
+
+
+
+

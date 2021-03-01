@@ -72,7 +72,7 @@ public class AggregationExecutor {
   /** aggregation batch calculation size. */
   private int aggregateFetchSize;
 
-  protected AggregationExecutor(AggregationPlan aggregationPlan) {
+  public AggregationExecutor(AggregationPlan aggregationPlan) {
     this.selectedSeries = aggregationPlan.getDeduplicatedPaths();
     this.dataTypes = aggregationPlan.getDeduplicatedDataTypes();
     this.aggregations = aggregationPlan.getDeduplicatedAggregations();
